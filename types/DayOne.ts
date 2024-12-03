@@ -1,1 +1,1 @@
-export type Lists = [number[],number[]]
+export type Lists = number[][]
