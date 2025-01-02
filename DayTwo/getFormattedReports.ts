@@ -11,7 +11,7 @@ import { getReports } from "../inputs.ts";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const formattedReports = async () => {
-	const reps = (await getReports).split("\n").map(rep => rep.split(" "))
+	const reps = (await getReports).split("\n").map(rep => rep.split(" ").map(lvl => Number(lvl)))
 	const rmLast = reps.slice(0, reps.length - 1)
 	return rmLast
 }

@@ -28,38 +28,24 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const getSafeReportCount = (reports: number[][]) => {
-  const safeIndexes: number[] = [];
-  const dangerIndexes: number[] = [];
-  reports.forEach((report, ri) => {
-    const ascOrDesc = reports[0] < reports[1] ? "asc" : "desc";
-    report.forEach((curr, li) => {
-      const prev = report[li - 1];
-      if (!dangerIndexes.includes(ri) && li > 0) {
-        if (ascOrDesc === "asc" && prev > curr) {
-          console.log(
-            `Unsafe --> Level '${prev}' descends to '${curr}' when report was initially defined as ascending`,
-          );
-          dangerIndexes.push(ri);
-        } else if (ascOrDesc === "desc" && prev < curr) {
-          console.log(
-            `Unsafe --> Level '${prev}' ascends to '${curr}' when report was initially defined as descending`,
-          );
-          dangerIndexes.push(ri);
-        } else if (![0, 1, 2, 3].includes(Math.abs(prev - curr))) {
-          console.log(
-            `Unsafe --> Difference between levels '${prev}' & '${curr}' = '${
-              Math.abs(prev - curr)
-            }' which exceeds 3 or does not meet the required difference of 1`,
-          );
-          dangerIndexes.push(ri);
+  let safetyCounter = 0
+  reports.forEach((report) => {
+    const initiallyIncreasing = report[1] - report[0] > 0
+    let safe = true
+    report.forEach((level, levelIndex) => {
+      if (safe === true && levelIndex != 0) {
+        const prev = report[levelIndex - 1]
+      if (initiallyIncreasing) {
+            safe &&= 1 <= level - prev && level - prev <= 3;
         } else {
-          if (!safeIndexes.includes(ri)) safeIndexes.push(ri);
-        }
+            safe &&= 1 <= prev - level && prev - level <= 3;
+        } 
       }
-    });
-  });
-  console.log(safeIndexes);
-  return safeIndexes.length;
+    })
+    safetyCounter = safe ? safetyCounter + 1 : safetyCounter
+  })
+  console.log(reports.length)
+  return safetyCounter
 };
 
 export { getSafeReportCount };
