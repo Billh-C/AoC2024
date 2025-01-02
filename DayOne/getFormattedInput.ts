@@ -10,7 +10,7 @@ import { getLocationLists } from "../inputs.ts";
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const sexyFormat = async (): Promise<Array<number[]>> => {
+const getFormattedInput = async (): Promise<Array<number[]>> => {
 	const ls = await getLocationLists
 	const splitls = ls.split("\n")
 	const sliced = splitls.slice(0, splitls.length-1)
@@ -18,7 +18,7 @@ const sexyFormat = async (): Promise<Array<number[]>> => {
 	console.log(splitcols.length)
 	return splitcols.map(y => y.sort())
 }
-export { sexyFormat }
+export { getFormattedInput }
 
 
 
@@ -36,7 +36,7 @@ export { sexyFormat }
 
 
 
-async function getFormattedInput() {
+async function readable() {
   const input = await getLocationLists;
 
   const splitInput = input.split("\n");
@@ -57,5 +57,3 @@ async function getFormattedInput() {
   }
 	return { A: listOne, B: listTwo } 
 }
-
-export { getFormattedInput }

@@ -35,7 +35,7 @@ const getSafeReportCount = (reports: number[][]) => {
     report.forEach((level, levelIndex) => {
       if (safe === true && levelIndex != 0) {
         const prev = report[levelIndex - 1]
-      if (initiallyIncreasing) {
+        if (initiallyIncreasing) {
             safe &&= 1 <= level - prev && level - prev <= 3;
         } else {
             safe &&= 1 <= prev - level && prev - level <= 3;
@@ -44,7 +44,6 @@ const getSafeReportCount = (reports: number[][]) => {
     })
     safetyCounter = safe ? safetyCounter + 1 : safetyCounter
   })
-  console.log(reports.length)
   return safetyCounter
 };
 

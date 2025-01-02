@@ -7,11 +7,9 @@
 
 import { Lists } from "../../types/DayOne.ts";
 
-const sexyDiff = ([ A, B ]: Lists) => A.reduce((acc, curr, i) => acc + Math.abs(curr - B[i]));
+const getDifference = ([ A, B ]: Lists) => A.reduce((acc, curr, i) => acc + Math.abs(curr - B[i]));
 
-export { sexyDiff }
-
-
+export { getDifference }
 
 
 
@@ -25,20 +23,8 @@ export { sexyDiff }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-export function getDifference(
+// Just a more friendly version without shorthands
+export function readable(
   { listOne, listTwo }: { listOne: number[]; listTwo: number[] },
 ) {
   // Result needs to be the total difference

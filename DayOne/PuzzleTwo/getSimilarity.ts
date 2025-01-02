@@ -8,11 +8,9 @@
 
 import { Lists } from '../../types/DayOne.ts'
 
-const sexySimilarity = ([ A, B ]: Lists) => A.reduce((acc, curr) => acc += curr * B.filter((val) => val === curr).length);
+const getSimilarity = ([ A, B ]: Lists) => A.reduce((acc, curr) => acc += curr * B.filter((val) => val === curr).length);
 
-export { sexySimilarity }
-
-
+export { getSimilarity }
 
 
 
@@ -34,7 +32,9 @@ export { sexySimilarity }
 
 
 
-export function getSimilarity(
+
+
+export function readable(
   { listOne, listTwo }: { listOne: number[]; listTwo: number[] },
 ) {
   let similarity = 0;
